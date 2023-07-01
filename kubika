@@ -1,0 +1,65 @@
+class RubiksCube:
+    def __init__(self):
+        self.cube = [["R"] * 3 for _ in range(3)]  # Лицевая сторона - красная
+        self.cube += [["G"] * 3 for _ in range(3)]  # Задняя сторона - зеленая
+        self.cube += [["B"] * 3 for _ in range(3)]  # Верхняя сторона - синяя
+        self.cube += [["Y"] * 3 for _ in range(3)]  # Нижняя сторона - желтая
+        self.cube += [["O"] * 3 for _ in range(3)]  # Левая сторона - оранжевая
+        self.cube += [["W"] * 3 for _ in range(3)]  # Правая сторона - белая
+
+    def display(self):
+        for row in self.cube:
+            print(row)
+
+# Создаем экземпляр кубика Рубика
+cube = RubiksCube()
+
+# Отображаем текущее состояние кубика
+cube.display()
+class RubiksCube:
+    def __init__(self):
+        self.cube = [["R"] * 3 for _ in range(3)]  # Лицевая сторона - красная
+        self.cube += [["G"] * 3 for _ in range(3)]  # Задняя сторона - зеленая
+        self.cube += [["B"] * 3 for _ in range(3)]  # Верхняя сторона - синяя
+        self.cube += [["Y"] * 3 for _ in range(3)]  # Нижняя сторона - желтая
+        self.cube += [["O"] * 3 for _ in range(3)]  # Левая сторона - оранжевая
+        self.cube += [["W"] * 3 for _ in range(3)]  # Правая сторона - белая
+
+    def display(self):
+        for row in self.cube:
+            print(row)
+
+    def rotate_face_clockwise(self, face):
+        # Получаем индексы строк и столбцов для вращаемой грани
+        row_start, row_end, col_start, col_end = self.get_face_indices(face)
+
+        # Вращаем грань по часовой стрелке
+        temp = list(self.cube[row_start])
+        for i in range(row_start, row_end):
+            self.cube[i] = self.cube[i + 1]
+        self.cube[row_end] = temp
+
+        for i in range(row_start, row_end + 1):
+            temp = self.cube[i][col_end]
+            for j in range(col_end, col_start, -1):
+                self.cube[i][j] = self.cube[i][j - 1]
+            self.cube[i][col_start] = temp
+
+    def get_face_indices(self, face):
+        if face == "F":
+            return 0, 2, 0, 2
+        elif face == "B":
+            return 3, 5, 0, 2
+        elif face == "U":
+            return 6, 8, 0, 2
+        elif face == "D":
+            return 9, 11, 0, 2
+        elif face == "L":
+            return 12, 14, 0, 2
+        elif face == "R":
+            return 15, 17, 0, 2
+
+# Создаем экземпляр кубика Рубика
+cube = RubiksCube()
+
+# Отображаем текущее сос
